@@ -1,5 +1,6 @@
 import 'package:dateme/core/app_const/app_colors.dart';
 import 'package:dateme/core/responsive/size_config.dart';
+import 'package:dateme/screens/auth/gender_page.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -47,7 +48,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PhoneNumberPage(),
+                    builder: (context) =>const GenderPage(),
                   ),
                 );
               },
