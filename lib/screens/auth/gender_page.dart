@@ -1,4 +1,5 @@
 import 'package:dateme/core/app_const/app_colors.dart';
+import 'package:dateme/screens/auth/enter_name_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
@@ -14,6 +15,10 @@ class GenderPage extends StatefulWidget {
 }
 
 class _GenderPageState extends State<GenderPage> {
+
+
+  int genderValue= -1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,36 +72,35 @@ class _GenderPageState extends State<GenderPage> {
                           getWidth(10.0),
                         ),
                       ),
+                      value: 1,
+                      groupValue: genderValue,
+                      onChanged: (val) {
+                       setState(() {
+                         
+                         genderValue = 1;
+                       });
+                      },
                       tileColor: AppColors.lightgrey,
                       title: const Text("Men"),
-                      value: true,
-                      groupValue: false,
-                      onChanged: (value) {
-                        setState(() {
-                          value = false;
-                        });
-                      },
                     ),
-
                     SizedBox(
                       height: getHeight(20.0),
                     ),
-
-                     RadioListTile(
+                    RadioListTile(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           getWidth(10.0),
                         ),
                       ),
-                      tileColor: AppColors.lightgrey,
-                      title: const Text("Women"),
-                      value: true,
-                      groupValue: false,
-                      onChanged: (value) {
+                      value: 2,
+                      groupValue: genderValue,
+                      onChanged: (val) {
                         setState(() {
-                          value = false;
+                          genderValue = 2;
                         });
                       },
+                      tileColor: AppColors.lightgrey,
+                      title: const Text("Women"),
                     ),
                   ],
                 ),
@@ -105,13 +109,12 @@ class _GenderPageState extends State<GenderPage> {
             SizedBox(
               height: getHeight(30.0),
             ),
-
             GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>const GenderPage(),
+                    builder: (context) => const EnterNamePage(),
                   ),
                 );
               },
@@ -120,7 +123,7 @@ class _GenderPageState extends State<GenderPage> {
                 height: getHeight(50.0),
                 width: getWidth(345.0),
                 decoration: BoxDecoration(
-                  color: AppColors.inputtextcolor,
+                  color: genderValue == -1 ? AppColors.inputtextcolor : AppColors.redButton,
                   borderRadius: BorderRadius.circular(
                     getWidth(30.0),
                   ),
@@ -135,7 +138,7 @@ class _GenderPageState extends State<GenderPage> {
                 ),
               ),
             ),
-               SizedBox(
+            SizedBox(
               height: getHeight(20.0),
             ),
             InkWell(
